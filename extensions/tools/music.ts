@@ -51,9 +51,9 @@ export function createGenerateMusicTool(pi: ExtensionAPI, getConfig: () => MaasC
 		name: "maas_generate_music",
 		label: "生成音乐",
 		description:
-			"通过源力 MaaS 平台提交文生音乐任务（MiniMax-Music3，输出 WAV）。歌词必须由调用方提供（模型逐字演唱原文），" +
+			"通过Origin Power MaaS 平台提交文生音乐任务（MiniMax-Music3，输出 WAV）。歌词必须由调用方提供（模型逐字演唱原文），" +
 			"想要自动出词先用对话模型生成歌词再传入。提交后自动轮询直至完成，音频下载保存到本地并返回路径。",
-		promptSnippet: "用源力 MaaS 生成音乐（MiniMax-Music3，需提供歌词）",
+		promptSnippet: "用Origin Power MaaS 生成音乐（MiniMax-Music3，需提供歌词）",
 		promptGuidelines: [
 			"maas_generate_music 的 input 是歌词本身，模型不代写；用户没有给歌词时先用对话模型写好再传入",
 			"instructions 必填且非空（如「流行,女声,钢琴,温暖的,中速」），空字符串会被拒绝",

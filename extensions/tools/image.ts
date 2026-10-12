@@ -52,9 +52,9 @@ export function createGenerateImageTool(pi: ExtensionAPI, getConfig: () => MaasC
 		name: "maas_generate_image",
 		label: "生成图片",
 		description:
-			"通过源力 MaaS 平台提交文生图任务（异步）。提交后自动轮询直至完成，产物下载保存到本地并以内嵌图片返回。" +
+			"通过Origin Power MaaS 平台提交文生图任务（异步）。提交后自动轮询直至完成，产物下载保存到本地并以内嵌图片返回。" +
 			"典型耗时 10-60 秒。失败任务不计费。",
-		promptSnippet: "用源力 MaaS 文生图（qwen-image 系列）生成图片并保存到本地",
+		promptSnippet: "用Origin Power MaaS 文生图（qwen-image 系列）生成图片并保存到本地",
 		promptGuidelines: [
 			"maas_generate_image 是异步任务：调用后自动等待完成并返回本地文件路径，无需手动轮询",
 			"修改已有图片请用 maas_edit_image 而不是重新生成",

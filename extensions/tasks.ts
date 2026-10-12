@@ -1,7 +1,7 @@
 /**
  * 异步任务引擎：轮询 / 取消 / 产物下载落盘
  *
- * 源力 MaaS 任务接口约定（来自 Apifox 项目 8900609）：
+ * Origin Power MaaS 任务接口约定（来自 Apifox 项目 8900609）：
  * - 创建任务返回 202 + data.id（前缀 image_/video_/music_ + 24 位十六进制）
  * - 状态枚举：图片/视频 queued/running/succeeded/failed/cancelled；
  *   音乐 queued/processing/completed/failed（completed 归一化为 succeeded）

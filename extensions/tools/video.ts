@@ -70,9 +70,9 @@ export function createGenerateVideoTool(pi: ExtensionAPI, getConfig: () => MaasC
 		name: "maas_generate_video",
 		label: "生成视频",
 		description:
-			"通过源力 MaaS 平台提交视频生成任务（异步，MiniMax-h3）。提交后自动轮询直至完成（典型 1-5 分钟），" +
+			"通过Origin Power MaaS 平台提交视频生成任务（异步，MiniMax-h3）。提交后自动轮询直至完成（典型 1-5 分钟），" +
 			"产物下载保存到本地并返回文件路径。支持首/尾帧参考图（图生视频）。在途任务超过 2 个会被限流，插件内自动退避重试。",
-		promptSnippet: "用源力 MaaS 生成视频（minimax-h3，最长 15 秒 768P）",
+		promptSnippet: "用Origin Power MaaS 生成视频（minimax-h3，最长 15 秒 768P）",
 		promptGuidelines: [
 			"视频生成耗时较长（1-5 分钟），工具会自动轮询等待，无需手动查询",
 			"同平台在途视频任务超过 2 个会 429，不要并发提交多个视频任务",

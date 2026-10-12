@@ -1,6 +1,6 @@
-# 源力媒体生成扩展（Pi Extension）
+# Pi 媒体生成扩展（Pi Extension）
 
-通过源力 MaaS 平台给 Pi 加多模态生成能力：**文生图、图片编辑、视频生成、音乐生成**。工具名 `maas_*`，目录名即用途：`yuanli-media-gen`。
+通过Origin Power MaaS 平台给 Pi 加多模态生成能力：**文生图、图片编辑、视频生成、音乐生成**。工具名 `maas_*`，目录名即用途：`yuanli-media-gen`。
 
 ## 安装
 
@@ -9,7 +9,7 @@
 pi install npm:pi-origin-power-media-gen@1.0.0
 
 # 或从本地路径（开发/试用）
-pi install /path/to/pi-originPower-media-gen
+pi install /path/to/pi-origin-power-media-gen
 ```
 
 ## 工具清单
@@ -24,20 +24,20 @@ pi install /path/to/pi-originPower-media-gen
 
 所有生成工具均为异步任务制：插件内部自动轮询（终态即停）→ 产物下载落盘 → 返回本地路径。图片类工具额外以内嵌图片（ImageContent）返回给模型，可直接基于生成结果继续迭代。
 
-**模型白名单**：`config.ts` 中的 `SUPPORTED_MODELS` 限定扩展仅接受 3 个多模态模型（`Qwen-Image-2.1-Turbo`（图片生成+编辑）、`minimax-h3`、`MiniMax-Music3`）；`/originPower-media-gen` 命令仅显示这些模型，传入白名单外的模型直接拒绝。
+**模型白名单**：`config.ts` 中的 `SUPPORTED_MODELS` 限定扩展仅接受 3 个多模态模型（`Qwen-Image-2.1-Turbo`（图片生成+编辑）、`minimax-h3`、`MiniMax-Music3`）；`/origin-power-media-gen` 命令仅显示这些模型，传入白名单外的模型直接拒绝。
 
 ## 配置（环境变量）
 
 | 变量 | 说明 | 默认 |
 |---|---|---|
-| `YUANLI_API_KEY` | 鉴权 Key（未设置时回退 `AGW_API_KEY`） | — |
-| `YUANLI_BASE_URL` | 网关地址 | `http://api.dev.origin-power.com` |
-| `YUANLI_MEDIA_DIR` | 产物根目录 | `~/.pi/media` |
-| `YUANLI_MODELS` | 模型白名单覆盖（逗号分隔，如 `Qwen-Image-2.1-Turbo,minimax-h3,MiniMax-Music3,qwen-image-2512`）；未设置时用内置默认 | 内置默认 |
+| `MEDIA_GEN_API_KEY` | 鉴权 Key（未设置时回退 `AGW_API_KEY`） | — |
+| `MEDIA_GEN_BASE_URL` | 网关地址 | `http://api.dev.origin-power.com` |
+| `MEDIA_GEN_MEDIA_DIR` | 产物根目录 | `~/.pi/media` |
+| `MEDIA_GEN_MODELS` | 模型白名单覆盖（逗号分隔，如 `Qwen-Image-2.1-Turbo,minimax-h3,MiniMax-Music3,qwen-image-2512`）；未设置时用内置默认 | 内置默认 |
 
-产物目录优先级：**工具参数 `output_dir` > `YUANLI_MEDIA_DIR` > 默认**。产物按类型存放于 `images/`、`videos/`、`musics/` 子目录。
+产物目录优先级：**工具参数 `output_dir` > `MEDIA_GEN_MEDIA_DIR` > 默认**。产物按类型存放于 `images/`、`videos/`、`musics/` 子目录。
 
-运行 `/originPower-media-gen` 命令可查看当前配置与可用模型列表。
+运行 `/origin-power-media-gen` 命令可查看当前配置与可用模型列表。
 
 ## 实测约定（与 Apifox 文档的差异，以实测为准）
 

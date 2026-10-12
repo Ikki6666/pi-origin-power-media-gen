@@ -46,7 +46,7 @@ export function createTaskStatusTool(pi: ExtensionAPI, getConfig: () => MaasConf
 		name: "maas_task_status",
 		label: "查询/取消 MaaS 任务",
 		description:
-			"查询源力 MaaS 异步任务（图片/视频/音乐）的当前状态，或取消任务。" +
+			"查询Origin Power MaaS 异步任务（图片/视频/音乐）的当前状态，或取消任务。" +
 			"通常不需要手动调用——maas_generate_* 工具已内置轮询；用于会话中断后恢复查询或取消排队中的任务。",
 		parameters: TaskStatusParams,
 		execute: async (_id, params): Promise<AgentToolResult<TaskStatusDetails>> => {

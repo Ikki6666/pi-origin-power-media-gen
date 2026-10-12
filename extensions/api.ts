@@ -1,5 +1,5 @@
 /**
- * 源力 MaaS HTTP 客户端
+ * Origin Power MaaS HTTP 客户端
  * - Bearer 鉴权
  * - 统一错误结构 {type, error, request_id} 映射为可读文案
  * - /v1/models 列表缓存 + 模型 ID 校验
@@ -42,7 +42,7 @@ export interface MaasResponse<T = any> {
 export function requireApiKey(cfg: MaasConfig): string {
 	if (!cfg.apiKey) {
 		throw new MaasError(
-			"未配置源力 MaaS API Key。请设置环境变量 YUANLI_API_KEY 后重启 Pi。",
+			"未配置Origin Power MaaS API Key。请设置环境变量 MEDIA_GEN_API_KEY 后重启 Pi。",
 			401,
 			undefined,
 		);

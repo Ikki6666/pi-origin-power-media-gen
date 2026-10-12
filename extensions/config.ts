@@ -1,11 +1,12 @@
 /**
- * 源力媒体生成扩展配置（源力 MaaS 多模态：图片/视频/音乐）
+ * Pi 媒体生成扩展配置（Origin Power MaaS 多模态：图片/视频/音乐）
  *
  * 环境变量：
- *   YUANLI_BASE_URL  网关地址（默认 http://api.dev.origin-power.com）
- *   YUANLI_API_KEY   鉴权 Key（未设置时回退 AGW_API_KEY）
- *   YUANLI_MEDIA_DIR 产物根目录（默认 ~/.pi/media）
- *   YUANLI_MODELS    模型白名单覆盖（逗号分隔；未设置时用内置默认值）
+ * 环境变量（新名优先，兼容旧名 YUANLI_*）：
+ *   MEDIA_GEN_BASE_URL  网关地址（默认 http://api.dev.origin-power.com）
+ *   MEDIA_GEN_API_KEY   鉴权 Key（未设置时回退旧名 YUANLI_API_KEY、AGW_API_KEY）
+ *   MEDIA_GEN_MEDIA_DIR 产物根目录（默认 ~/.pi/media）
+ *   MEDIA_GEN_MODELS    模型白名单覆盖（逗号分隔；未设置时用内置默认值）
  */
 
 import { homedir } from "node:os";
@@ -21,20 +22,20 @@ export interface MaasConfig {
 
 export function loadConfig(): MaasConfig {
 	const env = process.env;
-	const customModels = (env.YUANLI_MODELS || "")
+	const customModels = (env.MEDIA_GEN_MODELS || env.YUANLI_MODELS || "")
 		.split(",")
 		.map((s) => s.trim())
 		.filter(Boolean);
 	return {
-		baseUrl: (env.YUANLI_BASE_URL || "http://api.dev.origin-power.com").replace(/\/+$/, ""),
-		apiKey: env.YUANLI_API_KEY || env.AGW_API_KEY,
-		mediaDir: expandTilde(env.YUANLI_MEDIA_DIR || join(homedir(), ".pi", "media")),
+		baseUrl: (env.MEDIA_GEN_BASE_URL || env.YUANLI_BASE_URL || "http://api.dev.origin-power.com").replace(/\/+$/, ""),
+		apiKey: env.MEDIA_GEN_API_KEY || env.YUANLI_API_KEY || env.AGW_API_KEY,
+		mediaDir: expandTilde(env.MEDIA_GEN_MEDIA_DIR || env.YUANLI_MEDIA_DIR || join(homedir(), ".pi", "media")),
 		supportedModels: customModels.length > 0 ? customModels : [...DEFAULT_SUPPORTED_MODELS],
 		modelsFromEnv: customModels.length > 0,
 	};
 }
 
-/** 内置默认模型白名单（/maas 仅显示这些；工具调用仅接受这些；可用 YUANLI_MODELS 覆盖） */
+/** 内置默认模型白名单（/origin-power-media-gen 仅显示这些；工具调用仅接受这些；可用 MEDIA_GEN_MODELS 覆盖） */
 const DEFAULT_SUPPORTED_MODELS = [
 	"Qwen-Image-2.1-Turbo",
 	"minimax-h3",
@@ -50,7 +51,7 @@ export function expandTilde(p: string): string {
 
 /**
  * 解析产物输出目录。
- * 优先级：调用参数 output_dir > YUANLI_MEDIA_DIR 子目录 > 默认 ~/.pi/media/<subdir>
+ * 优先级：调用参数 output_dir > MEDIA_GEN_MEDIA_DIR 子目录 > 默认 ~/.pi/media/<subdir>
  */
 export function resolveOutputDir(cfg: MaasConfig, subdir: string, custom?: string): string {
 	return custom ? expandTilde(custom) : join(cfg.mediaDir, subdir);

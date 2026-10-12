@@ -1,7 +1,7 @@
 {
   "name": "pi-origin-power-media-gen",
   "version": "1.0.0",
-  "description": "源力媒体生成扩展：为 Pi 提供文生图、图片编辑、视频生成、音乐生成能力（源力 MaaS 多模态）",
+  "description": "Pi 媒体生成扩展：为 Pi 提供文生图、图片编辑、视频生成、音乐生成能力（Origin Power MaaS 多模态）",
   "keywords": ["pi-package", "pi", "multimodal", "image-generation", "video-generation", "music-generation", "yuanli"],
   "license": "MIT",
   "type": "module",
@@ -11,7 +11,7 @@
   },
   "pi": {
     "extensions": ["./extensions/index.ts"],
-    "image": "https://cdn.jsdelivr.net/gh/Ikki6666/pi-originPower-media-gen@main/docs/preview.jpg"
+    "image": "https://cdn.jsdelivr.net/gh/Ikki6666/pi-origin-power-media-gen@main/docs/preview.jpg"
   },
   "peerDependencies": {
     "@earendil-works/pi-coding-agent": "*",
@@ -22,6 +22,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Ikki6666/pi-originPower-media-gen.git"
+    "url": "git+https://github.com/Ikki6666/pi-origin-power-media-gen.git"
   }
 }

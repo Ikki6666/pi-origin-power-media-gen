@@ -72,9 +72,9 @@ export function createEditImageTool(pi: ExtensionAPI, getConfig: () => MaasConfi
 		name: "maas_edit_image",
 		label: "编辑图片",
 		description:
-			"通过源力 MaaS 平台提交图片编辑任务（异步）：在原图上按指令修改。本地文件路径自动转 Base64 上传。" +
+			"通过Origin Power MaaS 平台提交图片编辑任务（异步）：在原图上按指令修改。本地文件路径自动转 Base64 上传。" +
 			"提交后自动轮询直至完成，产物下载保存到本地并以内嵌图片返回。",
-		promptSnippet: "用源力 MaaS 编辑已有图片（Qwen-Image-2.1-Turbo）",
+		promptSnippet: "用Origin Power MaaS 编辑已有图片（Qwen-Image-2.1-Turbo）",
 		promptGuidelines: [
 			"修改用户提供的图片时优先用 maas_edit_image，把图片本地路径直接传入 images 参数",
 			"输入图 1-4 张（Qwen-Image-2.1-Turbo 参考图最多 4 张）",
