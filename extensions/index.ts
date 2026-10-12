@@ -2,8 +2,8 @@
  * 源力媒体生成扩展（源力 MaaS 多模态：图片 / 视频 / 音乐）— Pi Extension
  *
  * 通过源力 MaaS 平台（http://api.dev.origin-power.com）给 Pi 加多模态生成能力：
- *   maas_generate_image   文生图（Qwen-Image-2.1）
- *   maas_edit_image       图片编辑（Qwen-Image-2.1）
+ *   maas_generate_image   文生图（Qwen-Image-2.1-Turbo）
+ *   maas_edit_image       图片编辑（Qwen-Image-2.1-Turbo）
  *   maas_generate_video   视频生成（MiniMax-h3）
  *   maas_generate_music   音乐生成（MiniMax-Music3）
  *   maas_task_status      任务状态查询 / 取消

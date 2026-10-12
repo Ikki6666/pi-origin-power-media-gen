@@ -16,15 +16,15 @@ pi install /path/to/pi-yuanli-media-gen
 
 | 工具 | 说明 | 模型 |
 |---|---|---|
-| `maas_generate_image` | 文生图（异步任务，自动轮询） | Qwen-Image-2.1 |
-| `maas_edit_image` | 图片编辑（本地文件自动转 Base64） | Qwen-Image-2.1 |
+| `maas_generate_image` | 文生图（异步任务，自动轮询） | Qwen-Image-2.1-Turbo |
+| `maas_edit_image` | 图片编辑（本地文件自动转 Base64） | Qwen-Image-2.1-Turbo |
 | `maas_generate_video` | 视频生成（支持首/尾帧参考图） | minimax-h3（最长 15s，768P） |
 | `maas_generate_music` | 音乐生成（需提供歌词，模型逐字演唱） | MiniMax-Music3（WAV） |
 | `maas_task_status` | 任务状态查询 / 取消（封装 4 条取消路径） | — |
 
 所有生成工具均为异步任务制：插件内部自动轮询（终态即停）→ 产物下载落盘 → 返回本地路径。图片类工具额外以内嵌图片（ImageContent）返回给模型，可直接基于生成结果继续迭代。
 
-**模型白名单**：`config.ts` 中的 `SUPPORTED_MODELS` 限定扩展仅接受 3 个多模态模型（`Qwen-Image-2.1`（图片生成+编辑）、`minimax-h3`、`MiniMax-Music3`）；`/maas` 命令仅显示这些模型，传入白名单外的模型直接拒绝。
+**模型白名单**：`config.ts` 中的 `SUPPORTED_MODELS` 限定扩展仅接受 3 个多模态模型（`Qwen-Image-2.1-Turbo`（图片生成+编辑）、`minimax-h3`、`MiniMax-Music3`）；`/maas` 命令仅显示这些模型，传入白名单外的模型直接拒绝。
 
 ## 配置（环境变量）
 

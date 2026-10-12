@@ -30,7 +30,7 @@ const ImageParams = Type.Object({
 	model: Type.Optional(
 		Type.String({
 			description:
-				"模型 ID，固定为 Qwen-Image-2.1（文生图+编辑一体）。缺省时自动匹配",
+				"模型 ID，固定为 Qwen-Image-2.1-Turbo（文生图+编辑一体）。缺省时自动匹配",
 		}),
 	),
 	n: Type.Optional(Type.Number({ description: "输出张数 1-10，按张计费", default: 1 })),

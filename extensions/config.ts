@@ -27,7 +27,7 @@ export function loadConfig(): MaasConfig {
 
 /** 本扩展支持的多模态模型（/maas 仅显示这些；工具调用仅接受这些） */
 export const SUPPORTED_MODELS = [
-	"Qwen-Image-2.1",
+	"Qwen-Image-2.1-Turbo",
 	"minimax-h3",
 	"MiniMax-Music3",
 ] as const;

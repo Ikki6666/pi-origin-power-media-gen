@@ -157,7 +157,7 @@ const MIME_EXT: Record<string, string> = {
 };
 
 /**
- * 下载产物到本地并返回路径。
+ * 下载产物到本地并返回路径（自动重试 3 次，应对存储域瞬断）。
  * 预签名链接会过期（图片 24h / 视频·音乐 1h），下载失败提示重新查询获取新链接。
  */
 export async function downloadFile(
@@ -166,18 +166,29 @@ export async function downloadFile(
 	signal?: AbortSignal,
 ): Promise<{ path: string; bytes: number }> {
 	let res: Response;
-	try {
-		const timeout = AbortSignal.timeout(120_000);
-		res = await fetch(url, {
-			signal: signal ? AbortSignal.any([timeout, signal]) : timeout,
-		});
-	} catch (e: any) {
+	let lastErr: unknown;
+	for (let attempt = 0; attempt < 3; attempt++) {
+		try {
+			if (attempt > 0) await sleep(5_000 * attempt, signal);
+			const timeout = AbortSignal.timeout(120_000);
+			res = await fetch(url, {
+				signal: signal ? AbortSignal.any([timeout, signal]) : timeout,
+			});
+			lastErr = undefined;
+			break;
+		} catch (e: any) {
+			lastErr = e;
+			if (signal?.aborted) throw e;
+		}
+	}
+	if (lastErr) {
 		throw new MaasError(
-			`产物下载失败: ${e.message}。预签名链接可能已过期，请重新查询任务获取新链接。`,
+			`产物下载失败（已重试 3 次）: ${lastErr instanceof Error ? lastErr.message : lastErr}。预签名链接可能已过期或存储服务暂不可达，请重新查询任务获取新链接。`,
 			502,
 			undefined,
 		);
 	}
+	res = res!;
 	if (!res.ok) {
 		throw new MaasError(
 			`产物下载失败 [${res.status}]。403 通常表示链接过期，请重新查询任务获取新链接。`,

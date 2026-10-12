@@ -3,7 +3,7 @@
  *
  * 接口约定：
  * - JSON 方式仅接受 http(s) URL 或纯 Base64（禁 data: 前缀、不支持 mask）
- * - 默认模型 qwen-image-edit-2511（输入图 1-3 张）；Qwen-Image-2.1 最多 4 张
+ * - 模型固定 Qwen-Image-2.1-Turbo（编辑参考图最多 4 张）
  * - 请求体 ≤100 MiB、单图 ≤50 MiB（Base64 编码后 ≤66.7 MiB）、prompt ≤32000 字符
  */
 
@@ -52,7 +52,7 @@ const ImageEditParams = Type.Object({
 	model: Type.Optional(
 		Type.String({
 			description:
-				"模型 ID，默认 qwen-image-edit-2511（1-3 张输入图）；Qwen-Image-2.1 最多 4 张",
+				"模型 ID，固定为 Qwen-Image-2.1-Turbo（编辑参考图最多 4 张）",
 		}),
 	),
 	n: Type.Optional(Type.Number({ description: "输出图片数量", default: 1 })),
@@ -74,10 +74,10 @@ export function createEditImageTool(pi: ExtensionAPI, getConfig: () => MaasConfi
 		description:
 			"通过源力 MaaS 平台提交图片编辑任务（异步）：在原图上按指令修改。本地文件路径自动转 Base64 上传。" +
 			"提交后自动轮询直至完成，产物下载保存到本地并以内嵌图片返回。",
-		promptSnippet: "用源力 MaaS 编辑已有图片（Qwen-Image-2.1）",
+		promptSnippet: "用源力 MaaS 编辑已有图片（Qwen-Image-2.1-Turbo）",
 		promptGuidelines: [
 			"修改用户提供的图片时优先用 maas_edit_image，把图片本地路径直接传入 images 参数",
-			"输入图 1-4 张（Qwen-Image-2.1 参考图最多 4 张）",
+			"输入图 1-4 张（Qwen-Image-2.1-Turbo 参考图最多 4 张）",
 		],
 		parameters: ImageEditParams,
 		execute: async (_id, params, signal, onUpdate): Promise<AgentToolResult<ImageEditToolDetails>> => {
