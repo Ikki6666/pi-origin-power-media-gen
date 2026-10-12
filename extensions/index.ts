@@ -9,7 +9,7 @@
  *   maas_task_status      任务状态查询 / 取消
  *
  * 配置见 config.ts（环境变量 YUANLI_BASE_URL / YUANLI_API_KEY / YUANLI_MEDIA_DIR）。
- * 另提供 /origin-power-media-gen 命令查看当前配置与可用模型。
+ * 另提供 /originPower-media-gen 命令查看当前配置与可用模型。
  */
 
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
@@ -33,7 +33,7 @@ export default function (pi: ExtensionAPI) {
 	createGenerateMusicTool(pi, getConfig);
 	createTaskStatusTool(pi, getConfig);
 
-	pi.registerCommand("origin-power-media-gen", {
+	pi.registerCommand("originPower-media-gen", {
 		description: "查看源力媒体生成扩展配置与可用模型（图片/视频/音乐生成）",
 		handler: async (_name, ctx) => {
 			if (!config.apiKey) {
