@@ -7,7 +7,8 @@
   "type": "module",
   "files": ["extensions", "README.md", "LICENSE"],
   "pi": {
-    "extensions": ["./extensions/index.ts"]
+    "extensions": ["./extensions/index.ts"],
+    "image": "https://raw.githubusercontent.com/Ikki6666/pi-yuanli-media-gen/main/docs/preview.jpg"
   },
   "peerDependencies": {
     "@earendil-works/pi-coding-agent": "*",
