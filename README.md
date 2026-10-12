@@ -6,7 +6,7 @@
 
 ```bash
 # npm 发布后
-pi install npm:pi-originPower-media-gen@1.0.0
+pi install npm:pi-origin-power-media-gen@1.0.0
 
 # 或从本地路径（开发/试用）
 pi install /path/to/pi-originPower-media-gen

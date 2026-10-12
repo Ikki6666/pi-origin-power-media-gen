@@ -1,5 +1,5 @@
 {
-  "name": "pi-originPower-media-gen",
+  "name": "pi-origin-power-media-gen",
   "version": "1.0.0",
   "description": "源力媒体生成扩展：为 Pi 提供文生图、图片编辑、视频生成、音乐生成能力（源力 MaaS 多模态）",
   "keywords": ["pi-package", "pi", "multimodal", "image-generation", "video-generation", "music-generation", "yuanli"],
