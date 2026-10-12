@@ -6,6 +6,9 @@
   "license": "MIT",
   "type": "module",
   "files": ["extensions", "README.md", "LICENSE"],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "pi": {
     "extensions": ["./extensions/index.ts"],
     "image": "https://cdn.jsdelivr.net/gh/Ikki6666/pi-yuanli-media-gen@main/docs/preview.jpg"
