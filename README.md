@@ -33,6 +33,7 @@ pi install /path/to/pi-yuanli-media-gen
 | `YUANLI_API_KEY` | 鉴权 Key（未设置时回退 `AGW_API_KEY`） | — |
 | `YUANLI_BASE_URL` | 网关地址 | `http://api.dev.origin-power.com` |
 | `YUANLI_MEDIA_DIR` | 产物根目录 | `~/.pi/media` |
+| `YUANLI_MODELS` | 模型白名单覆盖（逗号分隔，如 `Qwen-Image-2.1-Turbo,minimax-h3,MiniMax-Music3,qwen-image-2512`）；未设置时用内置默认 | 内置默认 |
 
 产物目录优先级：**工具参数 `output_dir` > `YUANLI_MEDIA_DIR` > 默认**。产物按类型存放于 `images/`、`videos/`、`musics/` 子目录。
 

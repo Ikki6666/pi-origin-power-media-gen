@@ -6,7 +6,6 @@
  */
 
 import type { MaasConfig } from "./config.ts";
-import { SUPPORTED_MODELS } from "./config.ts";
 
 export class MaasError extends Error {
 	status: number;
@@ -112,11 +111,11 @@ export async function resolveModel(
 	matchKeywords: string[],
 ): Promise<string> {
 	const ids = await listModels(cfg);
-	const supported = ids.filter((id) => (SUPPORTED_MODELS as readonly string[]).includes(id));
+	const supported = ids.filter((id) => cfg.supportedModels.includes(id));
 	if (model) {
-		if (!(SUPPORTED_MODELS as readonly string[]).includes(model)) {
+		if (!cfg.supportedModels.includes(model)) {
 			throw new MaasError(
-				`模型 "${model}" 不在本扩展支持范围内。支持的模型: ${SUPPORTED_MODELS.join(", ")}`,
+				`模型 "${model}" 不在本扩展支持范围内。支持的模型: ${cfg.supportedModels.join(", ")}`,
 				400,
 				undefined,
 			);
@@ -133,7 +132,7 @@ export async function resolveModel(
 	const hit = supported.find((id) => matchKeywords.some((kw) => id.toLowerCase().includes(kw)));
 	if (!hit) {
 		throw new MaasError(
-			`未指定 model 且无法自动匹配（关键词: ${matchKeywords.join("/")}）。支持的模型: ${SUPPORTED_MODELS.join(", ")}`,
+			`未指定 model 且无法自动匹配（关键词: ${matchKeywords.join("/")}）。支持的模型: ${cfg.supportedModels.join(", ")}`,
 			400,
 			undefined,
 		);

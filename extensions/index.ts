@@ -13,7 +13,7 @@
  */
 
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
-import { loadConfig, SUPPORTED_MODELS, type MaasConfig } from "./config.ts";
+import { loadConfig, type MaasConfig } from "./config.ts";
 import { listModels } from "./api.ts";
 import { createGenerateImageTool } from "./tools/image.ts";
 import { createEditImageTool } from "./tools/imageEdit.ts";
@@ -45,13 +45,13 @@ export default function (pi: ExtensionAPI) {
 			}
 			try {
 				const models = await listModels(config);
-				const visible = models.filter((m) => (SUPPORTED_MODELS as readonly string[]).includes(m));
+				const visible = models.filter((m) => config.supportedModels.includes(m));
 				ctx.ui.notify(
 					[
 						`源力媒体生成扩展（图片/视频/音乐，源力 MaaS）`,
 						`网关: ${config.baseUrl}`,
 						`产物目录: ${config.mediaDir}`,
-						`支持的模型 (${visible.length}):`,
+						`模型白名单 (${visible.length}${config.modelsFromEnv ? "，来自 YUANLI_MODELS 环境变量" : "，内置默认"}):`,
 						...visible.map((m) => `  - ${m}`),
 					].join("\n"),
 					"info",
