@@ -24,7 +24,7 @@ pi install /path/to/pi-yuanli-media-gen
 
 所有生成工具均为异步任务制：插件内部自动轮询（终态即停）→ 产物下载落盘 → 返回本地路径。图片类工具额外以内嵌图片（ImageContent）返回给模型，可直接基于生成结果继续迭代。
 
-**模型白名单**：`config.ts` 中的 `SUPPORTED_MODELS` 限定扩展仅接受 3 个多模态模型（`Qwen-Image-2.1-Turbo`（图片生成+编辑）、`minimax-h3`、`MiniMax-Music3`）；`/maas` 命令仅显示这些模型，传入白名单外的模型直接拒绝。
+**模型白名单**：`config.ts` 中的 `SUPPORTED_MODELS` 限定扩展仅接受 3 个多模态模型（`Qwen-Image-2.1-Turbo`（图片生成+编辑）、`minimax-h3`、`MiniMax-Music3`）；`/origin-power-media-gen` 命令仅显示这些模型，传入白名单外的模型直接拒绝。
 
 ## 配置（环境变量）
 
@@ -37,7 +37,7 @@ pi install /path/to/pi-yuanli-media-gen
 
 产物目录优先级：**工具参数 `output_dir` > `YUANLI_MEDIA_DIR` > 默认**。产物按类型存放于 `images/`、`videos/`、`musics/` 子目录。
 
-运行 `/maas` 命令可查看当前配置与可用模型列表。
+运行 `/origin-power-media-gen` 命令可查看当前配置与可用模型列表。
 
 ## 实测约定（与 Apifox 文档的差异，以实测为准）
 
